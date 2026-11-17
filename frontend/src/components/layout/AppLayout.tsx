@@ -29,12 +29,12 @@ function LogoutControl({ mobile = false }: { mobile?: boolean }) {
           : 'mt-auto border-t border-[#e9e9e1] pt-5'
       }
     >
-      <span className="max-w-40 truncate text-xs font-medium text-[#777c72]">
+      <span className="max-w-40 truncate text-xs font-semibold text-[#d6d7dc]">
         {user?.username}
       </span>
       <button
         aria-label={`Cerrar sesión${user ? ` de ${user.username}` : ''}`}
-        className="inline-flex min-h-9 shrink-0 items-center justify-center gap-1.5 rounded-lg border border-[#dedfd6] bg-white px-2.5 py-2 text-xs font-semibold text-[#60675d] transition hover:bg-[#f4f4ef] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#788368] disabled:cursor-not-allowed disabled:opacity-50"
+        className="inline-flex min-h-9 shrink-0 items-center justify-center gap-1.5 rounded-lg border border-white/15 bg-white/5 px-2.5 py-2 text-xs font-semibold text-[#e3e4e8] transition hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white disabled:cursor-not-allowed disabled:opacity-50"
         disabled={isLoggingOut}
         onClick={() => void handleLogout()}
         type="button"
@@ -74,8 +74,8 @@ function LogoutControl({ mobile = false }: { mobile?: boolean }) {
 function NotesNavigation({ mobile = false }: { mobile?: boolean }) {
   const linkClass = ({ isActive }: { isActive: boolean }) => {
     const appearance = isActive
-      ? 'bg-[#e9ede3] text-[#344735]'
-      : 'text-[#777c72] hover:bg-[#f0f1eb] hover:text-[#344735]';
+      ? 'bg-white/12 text-white shadow-inner'
+      : 'text-[#aeb1ba] hover:bg-white/7 hover:text-white';
 
     return mobile
       ? `group flex min-w-0 flex-1 items-center justify-center gap-1.5 rounded-xl px-1.5 py-2 text-xs font-medium transition-colors ${appearance}`
@@ -141,7 +141,7 @@ function NotesNavigation({ mobile = false }: { mobile?: boolean }) {
 function BrandMark() {
   return (
     <div className="flex items-center gap-3">
-      <div className="flex size-10 items-center justify-center rounded-xl bg-[#344735] text-[#f4f2e9] shadow-sm">
+      <div className="flex size-10 items-center justify-center rounded-xl bg-[#f5c96d] text-[#25262b] shadow-[0_4px_18px_rgba(245,201,109,0.2)]">
         <svg
           aria-hidden="true"
           className="size-5"
@@ -165,11 +165,11 @@ function BrandMark() {
         </svg>
       </div>
       <div>
-        <p className="text-[15px] leading-tight font-semibold tracking-[-0.03em] text-[#2d3b30]">
-          notas
+        <p className="text-[15px] leading-tight font-bold tracking-[-0.03em] text-white">
+          Docket
         </p>
-        <p className="mt-1 hidden text-[10px] leading-tight font-medium tracking-[0.17em] text-[#92968b] uppercase sm:block">
-          espacio personal
+        <p className="mt-1 hidden text-[10px] leading-tight font-medium tracking-[0.17em] text-[#9ca0aa] uppercase sm:block">
+          tus ideas, a mano
         </p>
       </div>
     </div>
@@ -178,20 +178,20 @@ function BrandMark() {
 
 export function AppLayout() {
   return (
-    <div className="min-h-screen bg-[#f7f7f3] text-[#303a31]">
-      <aside className="fixed inset-y-0 left-0 z-10 hidden w-64 flex-col border-r border-[#e9e9e1] bg-[#fbfbf8] px-6 py-8 lg:flex">
+    <div className="app-shell min-h-screen text-[#303a31]">
+      <aside className="app-sidebar fixed inset-y-0 left-0 z-10 hidden w-64 flex-col border-r border-white/10 px-6 py-8 lg:flex">
         <BrandMark />
         <div className="mt-14">
-          <p className="mb-3 px-3.5 text-[10px] font-semibold tracking-[0.17em] text-[#a0a297] uppercase">
+          <p className="mb-3 px-3.5 text-[10px] font-semibold tracking-[0.17em] text-[#838794] uppercase">
             Biblioteca
           </p>
           <NotesNavigation />
-        </div>       
+        </div>
         <LogoutControl />
       </aside>
 
       <div className="lg:pl-64">
-        <header className="sticky top-0 z-10 border-b border-[#e9e9e1] bg-[#fbfbf8]/95 px-4 py-3 backdrop-blur-md sm:px-5 lg:hidden">
+        <header className="app-sidebar sticky top-0 z-10 border-b border-white/10 px-4 py-3 backdrop-blur-md sm:px-5 lg:hidden">
           <div className="mx-auto max-w-4xl">
             <div className="flex items-center justify-between gap-3">
               <BrandMark />

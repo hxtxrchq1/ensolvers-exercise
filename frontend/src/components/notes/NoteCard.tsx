@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react';
 import type { Note, NoteAction } from '@/types/note';
 import type { Category } from '@/types/category';
 
@@ -54,20 +55,31 @@ export function NoteCard({
   const availableCategories = allCategories.filter(
     (category) => !categories.some((assigned) => assigned.id === category.id),
   );
+  const cardColor = categories.find((category) => category.color)?.color;
+  const cardStyle = cardColor
+    ? ({
+        '--note-color': cardColor,
+        '--note-wash': `color-mix(in srgb, ${cardColor} 24%, white)`,
+        '--note-edge': `color-mix(in srgb, ${cardColor} 58%, white)`,
+      } as CSSProperties)
+    : undefined;
 
   return (
-    <article className="group flex min-h-64 flex-col rounded-2xl border border-[#e7e5dc] bg-white p-6 shadow-[0_3px_14px_rgba(38,48,35,0.035)] transition duration-200 hover:-translate-y-0.5 hover:border-[#cbd3bd] hover:shadow-[0_14px_36px_rgba(38,48,35,0.09)] sm:p-7">
-      <div className="mb-5 flex items-center justify-between">
-        <span className="inline-flex items-center gap-2 rounded-full bg-[#f0f2eb] px-3 py-1.5 text-[11px] font-semibold tracking-[0.12em] text-[#59684d] uppercase">
+    <article
+      className={`note-card group relative flex min-h-64 flex-col overflow-hidden rounded-[1.35rem] border p-5 shadow-[0_5px_18px_rgba(30,34,40,0.07)] transition duration-200 hover:-translate-y-1 hover:shadow-[0_18px_36px_rgba(30,34,40,0.13)] sm:p-6 ${cardColor ? 'note-card-colored' : 'border-[#e5e3dc] bg-[#fffefa]'}`}
+      style={cardStyle}
+    >
+      <div className="mb-5 flex items-center justify-between gap-2">
+        <span className="inline-flex items-center gap-2 rounded-full bg-white/55 px-3 py-1.5 text-[10px] font-bold tracking-[0.1em] text-[#30343a]/70 uppercase backdrop-blur-sm">
           <span
             aria-hidden="true"
-            className="size-1.5 rounded-full bg-[#87966e]"
+            className="size-1.5 rounded-full bg-current"
           />
           {note.isArchived ? 'Archivada' : 'Activa'}
         </span>
         <button
           aria-label={`Editar nota: ${note.title}`}
-          className="inline-flex min-h-9 items-center gap-1.5 rounded-lg px-2.5 text-xs font-semibold text-[#788368] transition hover:bg-[#f0f2eb] hover:text-[#344735] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#788368] disabled:cursor-not-allowed disabled:opacity-50"
+          className="inline-flex min-h-9 items-center gap-1.5 rounded-full bg-white/55 px-3 text-xs font-semibold text-[#30343a]/75 transition hover:bg-white/85 hover:text-[#202329] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#53644b] disabled:cursor-not-allowed disabled:opacity-50"
           disabled={actionsDisabled}
           onClick={() => onEdit(note)}
           type="button"
@@ -90,16 +102,16 @@ export function NoteCard({
         </button>
       </div>
 
-      <h2 className="mb-3 text-lg leading-snug font-semibold tracking-[-0.025em] text-[#29372d]">
+      <h2 className="mb-3 text-lg leading-snug font-bold tracking-[-0.035em] text-[#282b30]">
         {note.title}
       </h2>
-      <p className="min-w-0 flex-1 text-sm leading-6 break-words whitespace-pre-wrap text-[#697168]">
+      <p className="min-w-0 flex-1 text-sm leading-6 break-words whitespace-pre-wrap text-[#34373c]/85">
         {note.content}
       </p>
 
       {showCategories && (
-        <div className="mt-5 border-t border-[#efeee9] pt-4">
-          <p className="mb-2 text-[10px] font-semibold tracking-[0.12em] text-[#8a8e83] uppercase">
+        <div className="mt-5 border-t border-black/10 pt-4">
+          <p className="mb-2 text-[10px] font-bold tracking-[0.12em] text-[#34373c]/55 uppercase">
             Categorías
           </p>
           <div
@@ -126,7 +138,7 @@ export function NoteCard({
                 return (
                   <span
                     key={category.id}
-                    className="inline-flex max-w-full items-center gap-1.5 rounded-full border border-[#e4e6dc] bg-[#fafaf7] py-1 pr-1 pl-2.5 text-xs font-medium text-[#53604f]"
+                    className="inline-flex max-w-full items-center gap-1.5 rounded-full border border-white/60 bg-white/55 py-1 pr-1 pl-2.5 text-xs font-semibold text-[#34373c]"
                   >
                     <span
                       aria-hidden="true"
@@ -140,7 +152,7 @@ export function NoteCard({
                     <span className="max-w-32 truncate">{category.name}</span>
                     <button
                       aria-label={`Quitar categoría ${category.name} de ${note.title}`}
-                      className="flex size-6 shrink-0 items-center justify-center rounded-full text-[#788368] transition hover:bg-[#e9ede3] hover:text-[#344735] focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-[#788368] disabled:cursor-not-allowed disabled:opacity-50"
+                      className="flex size-6 shrink-0 items-center justify-center rounded-full text-[#4b5056] transition hover:bg-white/80 hover:text-black focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-[#53644b] disabled:cursor-not-allowed disabled:opacity-50"
                       disabled={actionsDisabled || categoryActionPending}
                       onClick={() => onRemoveCategory(note.id, category.id)}
                       type="button"
@@ -180,7 +192,7 @@ export function NoteCard({
                 </span>
                 <select
                   aria-label={`Asignar categoría a ${note.title}`}
-                  className="min-h-9 w-full rounded-lg border border-[#e4e6dc] bg-white px-3 py-2 text-xs font-medium text-[#59684d] transition outline-none focus:border-[#849276] focus:ring-3 focus:ring-[#849276]/15 disabled:cursor-not-allowed disabled:bg-[#f3f3ef] disabled:opacity-60"
+                  className="min-h-9 w-full rounded-lg border border-white/70 bg-white/65 px-3 py-2 text-xs font-semibold text-[#41464c] transition outline-none focus:border-[#849276] focus:ring-3 focus:ring-[#849276]/15 disabled:cursor-not-allowed disabled:bg-[#f3f3ef] disabled:opacity-60"
                   disabled={
                     actionsDisabled ||
                     !categoriesReady ||
@@ -210,7 +222,7 @@ export function NoteCard({
         </div>
       )}
 
-      <div className="mt-7 flex flex-wrap items-center gap-x-4 gap-y-1 border-t border-[#efeee9] pt-4 text-xs text-[#8a8e83]">
+      <div className="mt-7 flex flex-wrap items-center gap-x-4 gap-y-1 border-t border-black/10 pt-4 text-xs text-[#34373c]/55">
         <span>
           Creada{' '}
           <time dateTime={note.createdAt}>{formatDate(note.createdAt)}</time>
@@ -222,7 +234,7 @@ export function NoteCard({
           </span>
         )}
       </div>
-      <div className="mt-4 flex flex-wrap gap-2 border-t border-[#efeee9] pt-3">
+      <div className="mt-4 flex flex-wrap gap-2 border-t border-black/10 pt-3">
         {note.isArchived ? (
           <button
             className="inline-flex min-h-9 min-w-0 flex-1 items-center justify-center gap-1.5 rounded-lg bg-[#f0f2eb] px-2 py-2 text-[11px] font-semibold text-[#53644b] transition hover:bg-[#e6eadf] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#788368] disabled:cursor-not-allowed disabled:opacity-50"

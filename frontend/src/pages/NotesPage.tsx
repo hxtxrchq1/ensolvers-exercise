@@ -298,25 +298,25 @@ export function NotesPage({ list }: NotesPageProps) {
     <section>
       <div className="mb-9 flex flex-wrap items-end justify-between gap-5 sm:mb-11">
         <div>
-          <p className="mb-3 text-[11px] font-semibold tracking-[0.18em] text-[#7e896d] uppercase">
+          <p className="mb-3 text-[11px] font-bold tracking-[0.18em] text-[#727b8c] uppercase">
             {content.eyebrow}
           </p>
-          <h1 className="text-3xl leading-tight font-semibold tracking-[-0.045em] text-[#29372d] sm:text-[2.5rem]">
+          <h1 className="text-4xl leading-tight font-bold tracking-[-0.055em] text-[#20232a] sm:text-5xl">
             {content.title}
           </h1>
-          <p className="mt-3 max-w-xl text-sm leading-6 text-[#797f75] sm:text-[15px]">
+          <p className="mt-3 max-w-xl text-sm leading-6 text-[#707581] sm:text-[15px]">
             {content.description}
           </p>
         </div>
         <div className="flex flex-wrap items-center gap-3">
           {data && !isError && (
-            <span className="rounded-full border border-[#e4e6dc] bg-white px-3.5 py-2 text-xs font-medium text-[#737b6d]">
+            <span className="rounded-full border border-[#e1e4eb] bg-white/75 px-3.5 py-2 text-xs font-semibold text-[#626976] shadow-sm">
               {data.length} {data.length === 1 ? 'nota' : 'notas'}
             </span>
           )}
           {!archived && (
             <button
-              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-[#344735] px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-[#293a2b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#596e51]"
+              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-[#22252c] px-4 py-2.5 text-sm font-semibold text-white shadow-[0_6px_16px_rgba(30,34,40,0.16)] transition hover:bg-[#393c45] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#596e51]"
               onClick={openCreate}
               type="button"
             >
@@ -342,19 +342,17 @@ export function NotesPage({ list }: NotesPageProps) {
       {!archived && (
         <section
           aria-label="Categorías y filtro"
-          className="mb-7 rounded-2xl border border-[#e7e5dc] bg-white p-4 shadow-[0_3px_14px_rgba(38,48,35,0.025)] sm:p-5"
+          className="mb-8 rounded-2xl border border-white/80 bg-white/75 p-4 shadow-[0_10px_30px_rgba(45,52,65,0.055)] backdrop-blur-sm sm:p-5"
         >
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div className="min-w-0">
-              <h2 className="text-sm font-semibold text-[#344035]">
-                Categorías
-              </h2>
-              <p className="mt-1 text-xs leading-5 text-[#7b8176]">
+              <h2 className="text-sm font-bold text-[#292d35]">Categorías</h2>
+              <p className="mt-1 text-xs leading-5 text-[#777d89]">
                 Organiza y filtra tus notas activas.
               </p>
             </div>
             <button
-              className="inline-flex min-h-10 items-center justify-center rounded-xl border border-[#dce2d5] bg-[#f7f8f3] px-3.5 py-2 text-xs font-semibold text-[#53644b] transition hover:bg-[#edf0e8] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#788368] disabled:cursor-not-allowed disabled:opacity-50"
+              className="inline-flex min-h-10 items-center justify-center rounded-xl border border-[#dfe2e9] bg-white px-3.5 py-2 text-xs font-semibold text-[#444a54] transition hover:bg-[#f1f3f7] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#788368] disabled:cursor-not-allowed disabled:opacity-50"
               onClick={openCategoryCreate}
               type="button"
             >
@@ -368,7 +366,7 @@ export function NotesPage({ list }: NotesPageProps) {
             </span>
             <select
               aria-label="Filtrar notas activas por categoría"
-              className="min-h-11 w-full rounded-xl border border-[#dedfd6] bg-[#fbfbf8] px-3.5 py-2.5 text-sm text-[#465047] transition outline-none focus:border-[#849276] focus:ring-3 focus:ring-[#849276]/15 disabled:cursor-not-allowed disabled:opacity-60"
+              className="min-h-11 w-full rounded-xl border border-[#dfe2e9] bg-white px-3.5 py-2.5 text-sm text-[#424853] transition outline-none focus:border-[#849276] focus:ring-3 focus:ring-[#849276]/15 disabled:cursor-not-allowed disabled:opacity-60"
               disabled={categoriesQuery.isPending || categoriesQuery.isError}
               onChange={(event) =>
                 setSelectedCategoryId(event.currentTarget.value)

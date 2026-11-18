@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
 import { APP_GUARD } from '@nestjs/core';
-import { DatabaseModule } from '../database/database.module';
-import { AuthController } from './auth.controller';
-import { AuthGuard } from './auth.guard';
-import { AuthService } from './auth.service';
-import { PrismaUsersRepository } from './prisma-users.repository';
-import { UsersRepository } from './users.repository';
+import { DatabaseModule } from '../database/database.module.js';
+import { AuthController } from './auth.controller.js';
+import { AuthGuard } from './auth.guard.js';
+import { AuthService } from './auth.service.js';
+import { PrismaUsersRepository } from './prisma-users.repository.js';
+import { UsersRepository } from './users.repository.js';
 
 @Module({
   imports: [DatabaseModule],

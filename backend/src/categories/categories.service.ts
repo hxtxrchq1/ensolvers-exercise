@@ -1,10 +1,10 @@
 import { ConflictException, Injectable } from '@nestjs/common';
 import { Category } from '@prisma/client';
-import { CreateCategoryDto } from './dto/create-category.dto';
+import { CreateCategoryDto } from './dto/create-category.dto.js';
 import {
   CategoriesRepository,
   CategoryNameConflictError,
-} from './repositories/categories.repository';
+} from './repositories/categories.repository.js';
 
 @Injectable()
 export class CategoriesService {

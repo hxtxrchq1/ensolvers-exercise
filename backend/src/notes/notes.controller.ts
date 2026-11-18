@@ -12,10 +12,10 @@ import {
   Query,
 } from '@nestjs/common';
 import { Note } from '@prisma/client';
-import { CreateNoteDto } from './dto/create-note.dto';
-import { ListNotesQueryDto } from './dto/list-notes-query.dto';
-import { UpdateNoteDto } from './dto/update-note.dto';
-import { NotesService } from './notes.service';
+import { CreateNoteDto } from './dto/create-note.dto.js';
+import { ListNotesQueryDto } from './dto/list-notes-query.dto.js';
+import { UpdateNoteDto } from './dto/update-note.dto.js';
+import { NotesService } from './notes.service.js';
 
 @Controller('notes')
 export class NotesController {

@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { Category } from '@prisma/client';
-import { CreateCategoryDto } from './dto/create-category.dto';
-import { CategoriesService } from './categories.service';
+import { CreateCategoryDto } from './dto/create-category.dto.js';
+import { CategoriesService } from './categories.service.js';
 
 @Controller('categories')
 export class CategoriesController {

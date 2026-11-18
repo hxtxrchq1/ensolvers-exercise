@@ -8,9 +8,9 @@ import {
 import { ConfigService } from '@nestjs/config';
 import { Reflector } from '@nestjs/core';
 import { Request } from 'express';
-import { AuthService } from './auth.service';
-import { AuthenticatedRequest } from './auth.types';
-import { IS_PUBLIC_ROUTE } from './public.decorator';
+import { AuthService } from './auth.service.js';
+import { AuthenticatedRequest } from './auth.types.js';
+import { IS_PUBLIC_ROUTE } from './public.decorator.js';
 
 const SESSION_COOKIE_NAME = 'notes_session';
 const SAFE_METHODS = new Set(['GET', 'HEAD', 'OPTIONS']);

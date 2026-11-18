@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { Note, Prisma } from '@prisma/client';
-import { PrismaService } from '../../database/prisma.service';
+import { PrismaService } from '../../database/prisma.service.js';
 import {
   ArchiveStateUpdate,
   CreateNoteData,
   NotesRepository,
   RelatedNoteOrCategoryNotFoundError,
   UpdateNoteData,
-} from './notes.repository';
+} from './notes.repository.js';
 
 @Injectable()
 export class PrismaNotesRepository extends NotesRepository {

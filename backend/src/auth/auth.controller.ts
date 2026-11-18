@@ -10,10 +10,10 @@ import {
   Res,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
-import { AuthService } from './auth.service';
-import { AuthenticatedRequest, AuthenticatedUser } from './auth.types';
-import { LoginDto } from './dto/login.dto';
-import { Public } from './public.decorator';
+import { AuthService } from './auth.service.js';
+import { AuthenticatedRequest, AuthenticatedUser } from './auth.types.js';
+import { LoginDto } from './dto/login.dto.js';
+import { Public } from './public.decorator.js';
 
 const SESSION_COOKIE_NAME = 'notes_session';
 const SESSION_COOKIE_PATH = '/api';

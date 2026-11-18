@@ -4,13 +4,13 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { Note } from '@prisma/client';
-import { CategoriesRepository } from '../categories/repositories/categories.repository';
+import { CategoriesRepository } from '../categories/repositories/categories.repository.js';
 import {
   CreateNoteData,
   NotesRepository,
   RelatedNoteOrCategoryNotFoundError,
   UpdateNoteData,
-} from './repositories/notes.repository';
+} from './repositories/notes.repository.js';
 
 @Injectable()
 export class NotesService {

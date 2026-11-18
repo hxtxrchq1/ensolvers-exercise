@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
-import { DatabaseModule } from '../database/database.module';
-import { CategoriesController } from './categories.controller';
-import { CategoriesRepository } from './repositories/categories.repository';
-import { PrismaCategoriesRepository } from './repositories/prisma-categories.repository';
-import { CategoriesService } from './categories.service';
+import { DatabaseModule } from '../database/database.module.js';
+import { CategoriesController } from './categories.controller.js';
+import { CategoriesRepository } from './repositories/categories.repository.js';
+import { PrismaCategoriesRepository } from './repositories/prisma-categories.repository.js';
+import { CategoriesService } from './categories.service.js';
 
 @Module({
   imports: [DatabaseModule],

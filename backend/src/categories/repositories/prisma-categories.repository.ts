@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
-import { PrismaService } from '../../database/prisma.service';
+import { PrismaService } from '../../database/prisma.service.js';
 import {
   CategoryNameConflictError,
   CategoriesRepository,
   CreateCategoryData,
   UpdateCategoryData,
-} from './categories.repository';
+} from './categories.repository.js';
 
 @Injectable()
 export class PrismaCategoriesRepository extends CategoriesRepository {

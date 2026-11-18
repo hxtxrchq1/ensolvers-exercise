@@ -12,9 +12,9 @@ import {
   timingSafeEqual,
 } from 'node:crypto';
 import { promisify } from 'node:util';
-import { AuthenticatedUser, LoginResult } from './auth.types';
-import { LoginDto } from './dto/login.dto';
-import { UsersRepository } from './users.repository';
+import { AuthenticatedUser, LoginResult } from './auth.types.js';
+import { LoginDto } from './dto/login.dto.js';
+import { UsersRepository } from './users.repository.js';
 
 const scrypt = promisify(nodeScrypt);
 const PASSWORD_HASH_BYTES = 64;
